@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Dua</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Dark mode styles */
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #f7f7f7;
+        }
+
+        .dark-mode .search-bar input {
+            background-color: #444;
+            color: #f7f7f7;
+            border-color: #666;
+        }
+
+        .dark-mode .dua-item {
+            background-color: #2c2c2c;
+            color: #f7f7f7;
+        }
+
+        .dark-mode .dua-item h3 {
+            color: #4CAF50;
+        }
+
+        .dark-mode .dua-item p {
+            color: #ddd;
+        }
+
+        .dark-mode .share-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .dark-mode .share-btn:hover {
+            background-color: #45a049;
+        }
+
+        /* Dark mode toggle button */
+        .dark-mode-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #4CAF50;
+            cursor: pointer;
+            font-size: 24px;
+            z-index: 1000;
+        }
+
+        .dark-mode .dark-mode-toggle {
+            color: #f7f7f7;
+        }
+
+        /* Rest of your existing styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            color: #333;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .search-bar {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .search-bar input {
+            padding: 12px;
+            width: 80%;
+            max-width: 500px;
+            font-size: 16px;
+            border-radius: 25px;
+            border: 2px solid #ccc;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-bar input:focus {
+            border-color: #4CAF50;
+        }
+
+        .dua-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 30px 0;
+            padding: 0 20px;
+        }
+
+        .dua-item {
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 15px;
+            margin: 15px;
+            width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .dua-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .dua-item h3 {
+            font-family: 'Amiri', serif;
+            color: #4CAF50;
+            font-size: 1.2rem;
+            margin: 0;
+            transition: color 0.3s ease;
+        }
+
+        .dua-item p {
+            font-size: 14px;
+            color: #555;
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .dua-item.active p {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .dua-item {
+                width: 100%;
+                margin: 10px 0;
+            }
+
+            .search-bar input {
+                width: 90%;
+                max-width: none;
+            }
+        }
+
+        .share-btn {
+            margin-top: 10px;
+            padding: 8px 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .share-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <!-- Dark mode toggle button -->
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <div class="search-bar">
+        <input type="text" id="search" placeholder="Search for a Dua...">
+    </div>
+
+    <div class="dua-list">
+        <!-- Your Dua items here -->
+        <div class="dua-item">
+            <h3>Dua for Beginning of Ramadan</h3>
+            <p>اللَّهُمَّ أَهِلَّهُ عَلَيْنَا بِالأَمْنِ وَالإِيمَانِ، وَالسَّلامَةِ وَالإِسْلامِ، وَالتَّوْفِيقِ لِمَا تُحِبُّ وَتَرْضَى.<br>
+            "O Allah, bring it upon us with security and faith, safety and Islam, and success in what You love and are pleased with."
+            <button class="share-btn" onclick="shareContent('Dua for Beginning of Ramadan', 'اللَّهُمَّ أَهِلَّهُ عَلَيْنَا بِالأَمْنِ وَالإِيمَانِ، وَالسَّلامَةِ وَالإِسْلامِ، وَالتَّوْفِيقِ لِمَا تُحِبُّ وَتَرْضَى.')">
+                <i class="fas fa-share-alt"></i> Share
+            </button>
+            </p>
+        </div>
+        <div class="dua-item">
+        <h3>Dua for Beginning of Ramadan</h3>
+        <p>اللَّهُمَّ أَهِلَّهُ عَلَيْنَا بِالأَمْنِ وَالإِيمَانِ، وَالسَّلامَةِ وَالإِسْلامِ، وَالتَّوْفِيقِ لِمَا تُحِبُّ وَتَرْضَى.<br>
+        "O Allah, bring it upon us with security and faith, safety and Islam, and success in what You love and are pleased with."
+        <button class="share-btn" onclick="shareContent('Forgiveness of Sins for Fasting with Faith', 'Whoever fasts in Ramadan with faith and seeking reward, all his past sins will be forgiven. (Sahih Bukhari 38)')">
+            <i class="fas fa-share-alt"></i> Share
+        </button>
+    </p>
+
+    </div>
+
+    <div class="dua-item">
+        <h3>Dua for Breaking the Fast (Iftar)</h3>
+        <p>ذَهَبَ الظَّمَأُ، وَابْتَلَّتِ العُرُوقُ، وَثَبَتَ الأَجْرُ إِنْ شَاءَ اللَّهُ.<br>
+        "The thirst is gone, the veins are moistened, and the reward is confirmed, if Allah wills."
+         <button class="share-btn" onclick="shareContent('Forgiveness of Sins for Fasting with Faith', 'Whoever fasts in Ramadan with faith and seeking reward, all his past sins will be forgiven. (Sahih Bukhari 38)')">
+            <i class="fas fa-share-alt"></i> Share
+        </button>
+    </p>
+    </div>
+
+    <div class="dua-item">
+        <h3>Dua for Laylatul Qadr</h3>
+        <p>اللَّهُمَّ إِنَّكَ عَفُوٌّ تُحِبُّ العَفْوَ فَاعْفُ عَنِّي.<br>
+        "O Allah, You are the Pardoner, and You love to pardon, so pardon me."
+         <button class="share-btn" onclick="shareContent('Forgiveness of Sins for Fasting with Faith', 'Whoever fasts in Ramadan with faith and seeking reward, all his past sins will be forgiven. (Sahih Bukhari 38)')">
+            <i class="fas fa-share-alt"></i> Share
+        </button>
+    </p>
+    </div>
+
+    <div class="dua-item">
+        <h3>Dua for Forgiveness</h3>
+        <p>رَبِّ اغْفِرْ لِي وَارْحَمْنِي وَأَنْتَ خَيْرُ الرَّاحِمِينَ.<br>
+        "O my Lord, forgive me and have mercy on me, for You are the best of the merciful."
+         <button class="share-btn" onclick="shareContent('Forgiveness of Sins for Fasting with Faith', 'Whoever fasts in Ramadan with faith and seeking reward, all his past sins will be forgiven. (Sahih Bukhari 38)')">
+            <i class="fas fa-share-alt"></i> Share
+        </button>
+    </p>
+    </div>
+
+    <div class="dua-item">
+        <h3>Dua for Guidance</h3>
+        <p>رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ.<br>
+        "Our Lord, give us good in this world and good in the Hereafter, and save us from the punishment of the Fire."
+         <button class="share-btn" onclick="shareContent('Forgiveness of Sins for Fasting with Faith', 'Whoever fasts in Ramadan with faith and seeking reward, all his past sins will be forgiven. (Sahih Bukhari 38)')">
+            <i class="fas fa-share-alt"></i> Share
+        </button>
+    </p>
+    </div>
+
+    <div class="dua-item">
+        <h3>Dua for Patience</h3>
+        <p>رَبِّ أَعِنِّي وَلا تُعِنْ عَلَيَّ، وَانْصُرْنِي وَلا تَنْصُرْ عَلَيَّ.<br>
+        "O my Lord, help me and do not help others against me, and grant me victory and do not grant others victory over me."
+         <button class="share-btn" onclick="shareContent('Forgiveness of Sins for Fasting with Faith', 'Whoever fasts in Ramadan with faith and seeking reward, all his past sins will be forgiven. (Sahih Bukhari 38)')">
+            <i class="fas fa-share-alt"></i> Share
+        </button>
+    </p>
+    </div>
+
+    <div class="dua-item">
+        <h3>Dua for Gratitude</h3>
+        <p>الْحَمْدُ لِلَّهِ الَّذِي هَدَانَا لِهَذَا وَمَا كُنَّا لِنَهْتَدِيَ لَوْلا أَنْ هَدَانَا اللَّهُ.<br>
+        "Praise be to Allah who has guided us to this, and we would not have been guided if Allah had not guided us."
+         <button class="share-btn" onclick="shareContent('Forgiveness of Sins for Fasting with Faith', 'Whoever fasts in Ramadan with faith and seeking reward, all his past sins will be forgiven. (Sahih Bukhari 38)')">
+            <i class="fas fa-share-alt"></i> Share
+        </button>
+    </p>
+    </div>
+
+    <div class="dua-item">
+        <h3>Dua for Protection from Hellfire</h3>
+        <p>اللَّهُمَّ أَجِرْنَا مِنَ النَّارِ.<br>
+        "O Allah, save us from the Fire."
+         <button class="share-btn" onclick="shareContent('Forgiveness of Sins for Fasting with Faith', 'Whoever fasts in Ramadan with faith and seeking reward, all his past sins will be forgiven. (Sahih Bukhari 38)')">
+            <i class="fas fa-share-alt"></i> Share
+        </button>
+    </p>
+    </div>
+
+    <div class="dua-item">
+        <h3>Dua for Increasing Knowledge</h3>
+        <p>رَبِّ زِدْنِي عِلْمًا.<br>
+        "O my Lord, increase me in knowledge."
+         <button class="share-btn" onclick="shareContent('Forgiveness of Sins for Fasting with Faith', 'Whoever fasts in Ramadan with faith and seeking reward, all his past sins will be forgiven. (Sahih Bukhari 38)')">
+            <i class="fas fa-share-alt"></i> Share
+        </button>
+    </p>
+    </div>
+
+    <div class="dua-item">
+        <h3>Dua for Parents</h3>
+        <p>رَبِّ اغْفِرْ لِي وَلِوَالِدَيَّ وَلِلْمُؤْمِنِينَ يَوْمَ يَقُومُ الحِسَابُ.<br>
+        "O my Lord, forgive me, my parents, and the believers on the Day of Reckoning."
+         <button class="share-btn" onclick="shareContent('Forgiveness of Sins for Fasting with Faith', 'Whoever fasts in Ramadan with faith and seeking reward, all his past sins will be forgiven. (Sahih Bukhari 38)')">
+            <i class="fas fa-share-alt"></i> Share
+        </button>
+    </p>
+    </div>
+
+    <div class="dua-item">
+        <h3>Dua for Family</h3>
+        <p>رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ وَاجْعَلْنَا لِلْمُتَّقِينَ إِمَامًا.<br>
+        "Our Lord, grant us from among our spouses and offspring comfort to our eyes and make us an example for the righteous."
+         <button class="share-btn" onclick="shareContent('Forgiveness of Sins for Fasting with Faith', 'Whoever fasts in Ramadan with faith and seeking reward, all his past sins will be forgiven. (Sahih Bukhari 38)')">
+            <i class="fas fa-share-alt"></i> Share
+        </button>
+    </p>
+    </div>
+
+    <div class="dua-item">
+        <h3>Dua for the Ummah</h3>
+        <p>اللَّهُمَّ اشْفِ مَرْضَانَا وَمَرْضَى أُمَّةِ مُحَمَّدٍ.<br>
+        "O Allah, heal our sick and the sick among the Ummah of Muhammad."
+         <button class="share-btn" onclick="shareContent('Forgiveness of Sins for Fasting with Faith', 'Whoever fasts in Ramadan with faith and seeking reward, all his past sins will be forgiven. (Sahih Bukhari 38)')">
+            <i class="fas fa-share-alt"></i> Share
+        </button>
+    </p>
+    </div>
+
+    <div class="dua-item">
+        <h3>Dua for Unity</h3>
+        <p>اللَّهُمَّ وَحِّدْ كَلِمَةَ المُسْلِمِينَ.<br>
+        "O Allah, unite the hearts of the Muslims."
+         <button class="share-btn" onclick="shareContent('Forgiveness of Sins for Fasting with Faith', 'Whoever fasts in Ramadan with faith and seeking reward, all his past sins will be forgiven. (Sahih Bukhari 38)')">
+            <i class="fas fa-share-alt"></i> Share
+        </button>
+    </p>
+    </div>
+
+    <div class="dua-item">
+        <h3>Dua for Repentance</h3>
+        <p>أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ.<br>
+        "I seek forgiveness from Allah and repent to Him."
+         <button class="share-btn" onclick="shareContent('Forgiveness of Sins for Fasting with Faith', 'Whoever fasts in Ramadan with faith and seeking reward, all his past sins will be forgiven. (Sahih Bukhari 38)')">
+            <i class="fas fa-share-alt"></i> Share
+        </button>
+    </p>
+    </div>
+
+    <div class="dua-item">
+        <h3>Dua for Strength</h3>
+        <p>اللَّهُمَّ إِنِّي أَسْأَلُكَ بِرَحْمَتِكَ الَّتِي وَسِعَتْ كُلَّ شَيْءٍ أَنْ تَغْفِرَ لِي.<br>
+        "O Allah, I ask You by Your mercy that encompasses everything to forgive me."
+         <button class="share-btn" onclick="shareContent('Forgiveness of Sins for Fasting with Faith', 'Whoever fasts in Ramadan with faith and seeking reward, all his past sins will be forgiven. (Sahih Bukhari 38)')">
+            <i class="fas fa-share-alt"></i> Share
+        </button>
+    </p>
+    </div>
+
+    <div class="dua-item">
+        <h3>Dua for Eid</h3>
+        <p>اللَّهُ أَكْبَرُ، اللَّهُ أَكْبَرُ، لا إِلَهَ إِلا اللَّهُ، اللَّهُ أَكْبَرُ، اللَّهُ أَكْبَرُ، وَلِلَّهِ الحَمْدُ.<br>
+        "Allah is the Greatest, Allah is the Greatest, there is no god but Allah, Allah is the Greatest, Allah is the Greatest, and to Allah belongs all praise."
+         <button class="share-btn" onclick="shareContent('Forgiveness of Sins for Fasting with Faith', 'Whoever fasts in Ramadan with faith and seeking reward, all his past sins will be forgiven. (Sahih Bukhari 38)')">
+            <i class="fas fa-share-alt"></i> Share
+        </button>
+    </p>
+</div>
+
+    <div class="dua-item">
+        <h3>Dua for Fasting</h3>
+        <p>اللهم لك صمت وعلى رزقك أفطرت. <br> "O Allah, I have fasted for You, and with Your provision, I break my fast."
+             <button class="share-btn" onclick="shareContent('Forgiveness of Sins for Fasting with Faith', 'Whoever fasts in Ramadan with faith and seeking reward, all his past sins will be forgiven. (Sahih Bukhari 38)')">
+            <i class="fas fa-share-alt"></i> Share
+        </button>
+        </p>
+    </div>
+    <div class="dua-item">
+        <h3>Dua for Breaking the Fast</h3>
+        <p>ذهب الظمأ وابتلت العروق وثبت الأجر إن شاء الله. <br> "Thirst is gone, the veins are moistened, and the reward is confirmed, if Allah wills."
+             <button class="share-btn" onclick="shareContent('Forgiveness of Sins for Fasting with Faith', 'Whoever fasts in Ramadan with faith and seeking reward, all his past sins will be forgiven. (Sahih Bukhari 38)')">
+            <i class="fas fa-share-alt"></i> Share
+        </button>
+        </p>
+    </div>
+    <div class="dua-item">
+        <h3>Dua for Laylatul Qadr</h3>
+        <p>اللهم إنك عفو تحب العفو فاعف عني. <br> "O Allah, You are Most Forgiving, and You love forgiveness, so forgive me."
+             <button class="share-btn" onclick="shareContent('Forgiveness of Sins for Fasting with Faith', 'Whoever fasts in Ramadan with faith and seeking reward, all his past sins will be forgiven. (Sahih Bukhari 38)')">
+            <i class="fas fa-share-alt"></i> Share
+        </button>
+        </p>
+    </div>
+
+    <script>
+        // Dark mode toggle function
+        function toggleDarkMode() {
+            const body = document.body;
+            body.classList.toggle('dark-mode');
+
+            const toggleButton = document.querySelector('.dark-mode-toggle');
+            if (body.classList.contains('dark-mode')) {
+                toggleButton.innerHTML = '<i class="fas fa-sun"></i>'; // Change to sun icon in dark mode
+            } else {
+                toggleButton.innerHTML = '<i class="fas fa-moon"></i>'; // Change back to moon icon in light mode
+            }
+        }
+
+       function shareContent(title, content) {
+    if (navigator.share) {
+        navigator.share({
+            title: title,
+            text: content,
+            url: window.location.href
+        }).catch(err => console.error('Error sharing:', err));
+    } else if (navigator.clipboard) {
+        // Fallback: Copy to clipboard
+        const shareText = `${title}\n${content}\n${window.location.href}`;
+        navigator.clipboard.writeText(shareText)
+            .then(() => alert('Copied to clipboard: ' + shareText))
+            .catch(err => console.error('Failed to copy:', err));
+    } else {
+        // Fallback: Open mailto link
+        const shareUrl = encodeURIComponent(window.location.href);
+        const shareText = encodeURIComponent(`${title}\n${content}`);
+        window.location.href = `mailto:?subject=${shareText}&body=${shareText}%0A${shareUrl}`;
+    }
+}
+
+        // Toggle Dua content visibility
+        const duaItems = document.querySelectorAll('.dua-item');
+        duaItems.forEach(item => {
+            item.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+
+        // Search functionality
+        const searchInput = document.getElementById('search');
+        searchInput.addEventListener('input', function () {
+            const query = searchInput.value.toLowerCase();
+            duaItems.forEach(item => {
+                const title = item.querySelector('h3').textContent.toLowerCase();
+                const content = item.querySelector('p').textContent.toLowerCase();
+                if (title.includes(query) || content.includes(query)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

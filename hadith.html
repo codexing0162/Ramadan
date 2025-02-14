@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Adith</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f4f7f6, #e0f7fa);
+            color: #333;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        body.dark-mode {
+            background: linear-gradient(135deg, #1e1e1e, #121212);
+            color: #f4f7f6;
+        }
+
+        /* Dark Mode Toggle */
+        .dark-mode-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: #333;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode .dark-mode-toggle {
+            color: #f4f7f6;
+        }
+
+        /* Search Bar */
+        .search-bar {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .search-bar input {
+            padding: 12px;
+            width: 80%;
+            max-width: 500px;
+            font-size: 16px;
+            border-radius: 25px;
+            border: 2px solid #ccc;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-bar input:focus {
+            border-color: #4CAF50;
+        }
+
+        /* Hadith List */
+        .hadith-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 30px 0;
+            padding: 0 20px;
+        }
+
+        .hadith-item {
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 15px;
+            margin: 15px;
+            width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            height: 60px; /* Minimized height */
+            cursor: pointer;
+        }
+
+        body.dark-mode .hadith-item {
+            background-color: #2c2c2c;
+            color: #f4f7f6;
+        }
+
+        .hadith-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .hadith-item h3 {
+            font-family: 'Amiri', serif;
+            color: #4CAF50;
+            font-size: 1.2rem;
+            margin: 0;
+            transition: color 0.3s ease;
+        }
+
+        .hadith-item p {
+            font-size: 14px;
+            color: #555;
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            margin-top: 10px;
+            opacity: 0;
+            height: 0;
+            transition: opacity 0.3s ease, height 0.3s ease;
+        }
+
+        body.dark-mode .hadith-item p {
+            color: #f4f7f6;
+        }
+
+        .hadith-item.active {
+            height: auto;
+        }
+
+        .hadith-item.active p {
+            opacity: 1;
+            height: auto;
+        }
+
+        .share-btn {
+            margin-top: 10px;
+            padding: 8px 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .share-btn:hover {
+            background-color: #45a049;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hadith-item {
+                width: 100%;
+                margin: 10px 0;
+            }
+
+            .search-bar input {
+                width: 90%;
+                max-width: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<button class="dark-mode-toggle" id="darkModeToggle">
+    <i class="fas fa-moon"></i>
+</button>
+
+<div class="search-bar">
+    <input type="text" id="search" placeholder="Search for a Hadith...">
+</div>
+
+<div class="hadith-list">
+    <!-- Hadith Items -->
+    <div class="hadith-item">
+        <h3>Opening of Paradise and Closing of Hell</h3>
+        <p>"When Ramadan comes, the gates of Paradise are opened, and the gates of Hell are closed, and the devils are chained." (Sahih Bukhari 1899) <button class="share-btn" onclick="shareContent('Forgiveness of Sins for Fasting with Faith', 'Whoever fasts in Ramadan with faith and seeking reward, all his past sins will be forgiven. (Sahih Bukhari 38)')">
+            <i class="fas fa-share-alt"></i> Share
+        </button></p>
+    </div>
+    <div class="hadith-item">
+        <h3>Opening of Paradise and Closing of Hell</h3>
+        <p>"When Ramadan comes, the gates of Paradise are opened, and the gates of Hell are closed, and the devils are chained." (Sahih Bukhari 1899) <button class="share-btn" onclick="shareContent('Forgiveness of Sins for Fasting with Faith', 'Whoever fasts in Ramadan with faith and seeking reward, all his past sins will be forgiven. (Sahih Bukhari 38)')">
+            <i class="fas fa-share-alt"></i> Share
+        </button></p>
+    </div>
+    <div class="hadith-item">
+        <h3>Breaking the Fast with Dates or Water</h3>
+        <p>"The Prophet (ﷺ) used to fast and break his fast with dates, and if there were no dates, he would break his fast with water." (Sunan Abu Dawood 2356) <button class="share-btn" onclick="shareContent('Forgiveness of Sins for Fasting with Faith', 'Whoever fasts in Ramadan with faith and seeking reward, all his past sins will be forgiven. (Sahih Bukhari 38)')">
+            <i class="fas fa-share-alt"></i> Share
+        </button></p>
+    </div>
+    <div class="hadith-item">
+        <h3>Forgiveness of Sins for Fasting with Faith</h3>
+        <p>"Whoever fasts in Ramadan with faith and seeking reward, all his past sins will be forgiven." (Sahih Bukhari 38) <button class="share-btn" onclick="shareContent('Forgiveness of Sins for Fasting with Faith', 'Whoever fasts in Ramadan with faith and seeking reward, all his past sins will be forgiven. (Sahih Bukhari 38)')">
+            <i class="fas fa-share-alt"></i> Share
+        </button></p>
+    </div>
+    <div class="hadith-item">
+        <h3>Fasting as a Shield from the Fire</h3>
+        <p>"Fasting is a shield with which a servant protects himself from the fire." (Sahih Bukhari 6669) <button class="share-btn" onclick="shareContent('Forgiveness of Sins for Fasting with Faith', 'Whoever fasts in Ramadan with faith and seeking reward, all his past sins will be forgiven. (Sahih Bukhari 38)')">
+            <i class="fas fa-share-alt"></i> Share
+        </button></p>
+    </div>
+    <div class="hadith-item">
+        <h3>Gate of Ar-Rayyan in Paradise</h3>
+        <p>"There is a gate in Paradise called Ar-Rayyan, and those who fast will enter through it on the Day of Judgment." (Sahih Bukhari 1896) <button class="share-btn" onclick="shareContent('Forgiveness of Sins for Fasting with Faith', 'Whoever fasts in Ramadan with faith and seeking reward, all his past sins will be forgiven. (Sahih Bukhari 38)')">
+            <i class="fas fa-share-alt"></i> Share
+        </button></p>
+    </div>
+    <div class="hadith-item">
+        <h3>Increased Worship During the Last Ten Nights</h3>
+        <p>"The Prophet (ﷺ) used to strive more in worship during the last ten nights of Ramadan." (Sahih Bukhari 2024) <button class="share-btn" onclick="shareContent('Forgiveness of Sins for Fasting with Faith', 'Whoever fasts in Ramadan with faith and seeking reward, all his past sins will be forgiven. (Sahih Bukhari 38)')">
+            <i class="fas fa-share-alt"></i> Share
+        </button></p>
+    </div>
+    <div class="hadith-item">
+        <h3>Forgiveness for Forgetting to Eat or Drink</h3>
+        <p>"If anyone eats or drinks forgetfully, then let him complete his fast, for what he has eaten or drunk has been given to him by Allah." (Sahih Bukhari 6669) <button class="share-btn" onclick="shareContent('Forgiveness of Sins for Fasting with Faith', 'Whoever fasts in Ramadan with faith and seeking reward, all his past sins will be forgiven. (Sahih Bukhari 38)')">
+            <i class="fas fa-share-alt"></i> Share
+        </button></p>
+    </div>
+    <div class="hadith-item">
+        <h3>Virtue of the Last Ten Days of Ramadan</h3>
+        <p>"There are no days in which good deeds are more beloved to Allah than in these ten days (the last ten days of Ramadan)." (Sahih Bukhari 2023) <button class="share-btn" onclick="shareContent('Forgiveness of Sins for Fasting with Faith', 'Whoever fasts in Ramadan with faith and seeking reward, all his past sins will be forgiven. (Sahih Bukhari 38)')">
+            <i class="fas fa-share-alt"></i> Share
+        </button></p>
+    </div>
+    <div class="hadith-item">
+        <h3>Opening of Heaven and Closing of Hell During Ramadan</h3>
+        <p>"When Ramadan begins, the gates of Heaven are opened, and the gates of Hell are closed, and the devils are chained." (Sahih Muslim 1079) <button class="share-btn" onclick="shareContent('Forgiveness of Sins for Fasting with Faith', 'Whoever fasts in Ramadan with faith and seeking reward, all his past sins will be forgiven. (Sahih Bukhari 38)')">
+            <i class="fas fa-share-alt"></i> Share
+        </button></p>
+    </div>
+    <div class="hadith-item">
+        <h3>Forgiveness for Praying at Night During Ramadan</h3>
+        <p>"Whoever prays during the night of Ramadan with faith and seeking reward, will be forgiven for his past sins." (Sahih Bukhari 38) <button class="share-btn" onclick="shareContent('Forgiveness of Sins for Fasting with Faith', 'Whoever fasts in Ramadan with faith and seeking reward, all his past sins will be forgiven. (Sahih Bukhari 38)')">
+            <i class="fas fa-share-alt"></i> Share
+        </button></p>
+    </div>
+    <!-- Add more hadiths as needed -->
+</div>
+
+<script>
+    // Dark Mode Toggle
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const body = document.body;
+
+    darkModeToggle.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        const isDarkMode = body.classList.contains('dark-mode');
+        localStorage.setItem('darkMode', isDarkMode);
+    });
+
+    // Check Local Storage for Dark Mode Preference
+    const savedDarkMode = localStorage.getItem('darkMode');
+    if (savedDarkMode === 'true') {
+        body.classList.add('dark-mode');
+    }
+
+   function shareContent(title, content) {
+    if (navigator.share) {
+        navigator.share({
+            title: title,
+            text: content,
+            url: window.location.href
+        }).catch(err => console.error('Error sharing:', err));
+    } else if (navigator.clipboard) {
+        // Fallback: Copy to clipboard
+        const shareText = `${title}\n${content}\n${window.location.href}`;
+        navigator.clipboard.writeText(shareText)
+            .then(() => alert('Copied to clipboard: ' + shareText))
+            .catch(err => console.error('Failed to copy:', err));
+    } else {
+        // Fallback: Open mailto link
+        const shareUrl = encodeURIComponent(window.location.href);
+        const shareText = encodeURIComponent(`${title}\n${content}`);
+        window.location.href = `mailto:?subject=${shareText}&body=${shareText}%0A${shareUrl}`;
+    }
+}
+
+    // Toggle Hadith Content
+    const hadithItems = document.querySelectorAll('.hadith-item');
+    hadithItems.forEach(item => {
+        item.addEventListener('click', () => {
+            item.classList.toggle('active');
+        });
+    });
+
+    // Search Functionality
+    const searchInput = document.getElementById('search');
+    searchInput.addEventListener('input', function () {
+        const query = searchInput.value.toLowerCase();
+        hadithItems.forEach(item => {
+            const title = item.querySelector('h3').textContent.toLowerCase();
+            const content = item.querySelector('p').textContent.toLowerCase();
+            if (title.includes(query) || content.includes(query)) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

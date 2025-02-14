@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramadan App - Prayer Times</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        
+        .dark-mode {
+            background-color: black;
+            background-image: none;
+            color: white;
+        }
+
+        .dark-mode-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: white;
+        }
+        
+        .timetable {
+            margin-top: 100px;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+        .prayer {
+            margin: 10px;
+            padding: 15px;
+            width: 90%;
+            max-width: 450px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 20px;
+            font-family: Georgia, serif;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <button class="dark-mode-button" id="dark-mode-toggle">🌙</button>
+
+    <div class="timetable">
+        <div class="prayer" id="Fajr">Fajr: <span>05:30 AM</span></div>
+        <div class="prayer" id="Dhuhr">Dhuhr: <span>12:51 PM</span></div>
+        <div class="prayer" id="Asr">Asr: <span>04:06 PM</span></div>
+        <div class="prayer" id="Maghrib">Maghrib: <span>07:01 PM</span></div>
+        <div class="prayer" id="Isha">Isha: <span>08:08 PM</span></div>
+    </div>
+
+    <script>
+        const darkModeToggle = document.getElementById("dark-mode-toggle");
+        
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+            const isDarkMode = document.body.classList.contains("dark-mode");
+            localStorage.setItem("darkMode", isDarkMode);
+        }
+        
+        darkModeToggle.addEventListener("click", toggleDarkMode);
+        
+        if (localStorage.getItem("darkMode") === "true") {
+            document.body.classList.add("dark-mode");
+        }
+    </script>
+</body>
+</html>
